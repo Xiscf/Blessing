@@ -115,7 +115,7 @@ end -- function BlessingCommand:OnEvent
 
 
 
--- put SayKarma with the default mode, everything is enabled
+-- put Blessing with the default mode, everything is enabled
 function BlessingDefaultLoadingPrefsEnable()
    BlessingPrefs = {
 		['BlessingEnable'] = "yes",
