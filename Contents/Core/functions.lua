@@ -25,14 +25,15 @@ function SlashCmdList.BLESSINGCMD(msg, editbox)
 	end
 	
 	if (msg == "help") then
-	   print("/blessing help -----------------------------------------");
-	   print("/blessing version: Display the version of this addon.");
-		print("/blessing description: Display the description of this addon.");
-		print("/blessing isEnable: Check if the addon is enabled or not.");
-		print("/blessing enable/on: Enable Blessing.");
-		print("/blessing disable/off: Disable Blessing.");
-		print("/blessing ui: Display the window settings.");
-		print("----------------------------------------- /blessing help");
+	   print("/bsg help -----------------------------------------");
+		print("You can use either /blessing or /bsg as main command.");
+	   print("/bsg version: Display the version of this addon.");
+		print("/bsg description: Display the description of this addon.");
+		print("/bsg isEnable: Check if the addon is enabled or not.");
+		print("/bsg enable/on: Enable Blessing.");
+		print("/bsg disable/off: Disable Blessing.");
+		print("/bsg ui: Display the window settings.");
+		print("----------------------------------------- /bsg help");
 	
 	-- display the version of the addon
 	elseif (msg == "version") then
@@ -91,7 +92,8 @@ function BlessingCommand:OnEvent(event)
 				end
 				-- initialization over
 				
-				-- is the user had an old version ? check if we have to update some old variables
+				-- is the user had an old version?
+				-- Check if we have to update some old variables.
 				if (BLESSING_VERSION ~= BLESSING_CURRENT_VERSION) then
 						-- we clean everything
 						print("Updating saved variables...");
@@ -99,7 +101,8 @@ function BlessingCommand:OnEvent(event)
 						print("Updating terminated");
 				end
 				
-				-- just a simple text to make the user aware that everything is loaded and and how to use the addon
+				-- just a simple text to make the user aware that everything
+				-- is loaded and and how to use the addon
 				if (BlessingVarTmp == nil) then
 						BlessingVarTmp = 1;
 						print("Blessing Loaded - use \'/blessing help\' for more help");
