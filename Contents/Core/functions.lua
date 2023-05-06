@@ -19,79 +19,73 @@ SLASH_BLESSINGCMD2 = '/bsg';
 -- Slash command arguments dectection
 function SlashCmdList.BLESSINGCMD(msg, editbox)
    --Since there is a sensitive case detection, we convert
-	-- everything in lowercase
-	if (msg ~= nil) then
-	   msg = string.lower(msg);
-	end
+   -- everything in lowercase
+   if (msg ~= nil) then
+      msg = string.lower(msg);
+   end
 	
-	if (msg == "help") then
-	   print("/bsg help -----------------------------------------");
-		print("You can use either /blessing or /bsg as main command.");
-	   print("/bsg version: Display the version of this addon.");
-		print("/bsg description: Display the description of this addon.");
-		print("/bsg isEnable: Check if the addon is enabled or not.");
-		print("/bsg enable/on: Enable Blessing.");
-		print("/bsg disable/off: Disable Blessing.");
-		print("/bsg ui: Display the window settings.");
-		print("/bsg lng/language: Display available languages.");
-		print("----------------------------------------- /bsg help");
+   if (msg == "help") then
+      print("/bsg help -----------------------------------------");
+      print("You can use either /blessing or /bsg as main command.");
+      print("/bsg version: Display the version of this addon.");
+      print("/bsg description: Display the description of this addon.");
+      print("/bsg isEnable: Check if the addon is enabled or not.");
+      print("/bsg enable/on: Enable Blessing.");
+      print("/bsg disable/off: Disable Blessing.");
+      print("/bsg ui: Display the window settings.");
+      print("/bsg lng/language: Display available languages.");
+      print("----------------------------------------- /bsg help");
+
+      -- display the version of the addon
+   elseif (msg == "version") then
+      print("Blessing version: " .. BLESSING_CURRENT_VERSION);
+
+   elseif (msg == "description") then
+      print("Blessing\'s description: " .. BLESSING_DESCRIPTION);
 	
-	-- display the version of the addon
-	elseif (msg == "version") then
-	   print("Blessing version: " .. BLESSING_CURRENT_VERSION);
+   elseif (msg == "isenable") or (msg == "isenabled") then
+      print("Is Blessing enabled? " .. BlessingPrefs["BlessingEnable"]);
 	
-	elseif (msg == "description") then
-	   print("Blessing\'s description: " .. BLESSING_DESCRIPTION);
+   elseif (msg == "enable") or (msg == "on") then
+      BlessingFunctionEnable();
+
+   elseif (msg == "disable") or (msg == "off") then
+      BlessingFunctionDisable();
 	
-	elseif (msg == "isenable") or (msg == "isenabled") then
-	   print("Is Blessing enabled? " .. BlessingPrefs["BlessingEnable"]);
+   elseif (msg == "ui") then
+      InterfaceOptionsFrame_OpenToCategory(Blessing.panel);
+   
+      -- we have to do it a second time, since the first time it won't
+      -- open the good panel...
+      InterfaceOptionsFrame_OpenToCategory(Blessing.panel);
 	
-	elseif (msg == "enable") or (msg == "on") then
-	   BlessingFunctionEnable();
-	elseif (msg == "disable") or (msg == "off") then
-	   BlessingFunctionDisable();
+   elseif (msg == "lng") or (msg == "language") then
+      BlessingDisplayLng();
 	
-	elseif (msg == "ui") then
-	   InterfaceOptionsFrame_OpenToCategory(Blessing.panel);
-		-- we have to do it a second time, since the first time it won't
-		-- open the good panel...
-		InterfaceOptionsFrame_OpenToCategory(Blessing.panel);
-	
-	elseif (msg == "lng") or (msg == "language") then
-	   BlessingDisplayLng();
-	end
-	
-	elseif (msg == "01") or (msg == "lang en") or (msg == "language en") then
-	   BlessingFunctionLanguageEn();
-	end
+   elseif (msg == "01") or (msg == "lang en") or (msg == "language en") then
+      BlessingFunctionLanguageEn();
 
    elseif (msg == "02") or (msg == "lang fr") or (msg == "language fr") then
-	   BlessingFunctionLanguageFr();
-   end
+      BlessingFunctionLanguageFr();
 	
    elseif (msg == "03") or (msg == "lang it") or (msg == "language it") then
-	   BlessingFunctionLanguageIt();
-   end
+      BlessingFunctionLanguageIt();
 	
    elseif (msg == "04") or (msg == "lang sp") or (msg == "language sp") then
-	   BlessingFunctionLanguageSp();
-   end
+      BlessingFunctionLanguageSp();
 	
    elseif (msg == "05") or (msg == "lang ru") or (msg == "language ru") then
-	   BlessingFunctionLanguageRu();
-   end
+      BlessingFunctionLanguageRu();
 	
    elseif (msg == "06") or (msg == "lang de") or (msg == "language de") then
-	   BlessingFunctionLanguageDe();
-   end
+      BlessingFunctionLanguageDe();
 	
    elseif (msg == "07") or (msg == "lang ch") or (msg == "language ch") then
-	   BlessingFunctionLanguageCh();
+      BlessingFunctionLanguageCh();
+
+   else
+       -- code
    end
-	
-	else
-      -- code
-	end
 		
 end
 -- end function SlashCmdList_BLESSING
