@@ -1,0 +1,8 @@
+## Interface: 30401
+## Title: Blessing
+## Version: 1.0.0.
+## Notes: Management Paladin's Blessing.
+## Author: Xcf
+## SavedVariablesPerCharacter: BLESSING_VERSION, BlessingPrefs
+Contents\Core\loading.xml
+Contents\Locales\loading.xml
