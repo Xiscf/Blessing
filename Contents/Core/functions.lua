@@ -33,6 +33,7 @@ function SlashCmdList.BLESSINGCMD(msg, editbox)
 		print("/bsg enable/on: Enable Blessing.");
 		print("/bsg disable/off: Disable Blessing.");
 		print("/bsg ui: Display the window settings.");
+		print("/bsg lng/language: Display available languages.");
 		print("----------------------------------------- /bsg help");
 	
 	-- display the version of the addon
@@ -56,12 +57,91 @@ function SlashCmdList.BLESSINGCMD(msg, editbox)
 		-- open the good panel...
 		InterfaceOptionsFrame_OpenToCategory(Blessing.panel);
 	
-	else
+	elseif (msg == "lng") or (msg == "language") then
+	   BlessingDisplayLng();
+	end
+	
+	elseif (msg == "01") or (msg == "lang en") or (msg == "language en") then
+	   BlessingFunctionLanguageEn();
+	end
 
+   elseif (msg == "02") or (msg == "lang fr") or (msg == "language fr") then
+	   BlessingFunctionLanguageFr();
+   end
+	
+   elseif (msg == "03") or (msg == "lang it") or (msg == "language it") then
+	   BlessingFunctionLanguageIt();
+   end
+	
+   elseif (msg == "04") or (msg == "lang sp") or (msg == "language sp") then
+	   BlessingFunctionLanguageSp();
+   end
+	
+   elseif (msg == "05") or (msg == "lang ru") or (msg == "language ru") then
+	   BlessingFunctionLanguageRu();
+   end
+	
+   elseif (msg == "06") or (msg == "lang de") or (msg == "language de") then
+	   BlessingFunctionLanguageDe();
+   end
+	
+   elseif (msg == "07") or (msg == "lang ch") or (msg == "language ch") then
+	   BlessingFunctionLanguageCh();
+   end
+	
+	else
+      -- code
 	end
 		
 end
 -- end function SlashCmdList_BLESSING
+
+function BlessingFunctionLanguageEn()
+   BlessingPrefs['BlessingLanguage'] = "en";
+	L_ = L_enUS;
+end
+
+function BlessingFunctionLanguageFr()
+   BlessingPrefs['BlessingLanguage'] = "fr";
+	L_ = L_frFR;
+end
+
+function BlessingFunctionLanguageIt()
+   BlessingPrefs['BlessingLanguage'] = "it";
+	L_ = L_itIT;
+end
+
+function BlessingFunctionLanguageSp()
+   BlessingPrefs['BlessingLanguage'] = "sp";
+	L_ = L_spSP;
+end
+
+function BlessingFunctionLanguageRu()
+   BlessingPrefs['BlessingLanguage'] = "ru";
+	L_ = L_ruRU;
+end
+
+function BlessingFunctionLanguageDe()
+   BlessingPrefs['BlessingLanguage'] = "de";
+	L_ = L_deDE;
+end
+
+function BlessingFunctionLanguageCh()
+   BlessingPrefs['BlessingLanguage'] = "ch";
+	L_ = L_chCH;
+end
+
+function BlessingDisplayLng()
+   print("List of language available:");
+	print("   01 - english/USA");
+	print("   02 - french/France");
+	-- print("   03 - italian");
+	-- print("   04 - spannish");
+	-- print("   05 - russian");
+	-- print("   06 - german");
+	-- print("   07 - chinese");
+	print("Use \"/bls 01\" for english or \"02\" for french, ...");
+end
 
 -- Enable addon, only if the option is on
 function BlessingFunctionEnable()
@@ -80,37 +160,35 @@ end
 -- Loading
 function BlessingCommand:OnEvent(event)
 	-- when addons are loaded
-		if (event == "ADDON_LOADED") then
-				-- initialization
-				if (BLESSING_VERSION == nil) then
-						BLESSING_VERSION = BLESSING_CURRENT_VERSION;
-				end
+   if (event == "ADDON_LOADED") then
+	   -- initialization
+		if (BLESSING_VERSION == nil) then
+		   	BLESSING_VERSION = BLESSING_CURRENT_VERSION;
+		end
 				
-				if (BlessingPrefs == nil) then
-						print("Initialization");
-						BlessingDefaultLoadingPrefsEnable();
-				end
-				-- initialization over
+		if (BlessingPrefs == nil) then
+		   	print("Initialization");
+			BlessingDefaultLoadingPrefsEnable();
+		end
+		-- initialization over
 				
-				-- is the user had an old version?
-				-- Check if we have to update some old variables.
-				if (BLESSING_VERSION ~= BLESSING_CURRENT_VERSION) then
-						-- we clean everything
-						print("Updating saved variables...");
-						BlessingFunctionUpdateSavedVariables();
-						print("Updating terminated");
-				end
+		-- is the user had an old version?
+		-- Check if we have to update some old variables.
+		if (BLESSING_VERSION ~= BLESSING_CURRENT_VERSION) then
+		   	-- we clean everything
+			print("Updating saved variables...");
+			BlessingFunctionUpdateSavedVariables();
+			print("Updating terminated");
+		end
 				
-				-- just a simple text to make the user aware that everything
-				-- is loaded and and how to use the addon
-				if (BlessingVarTmp == nil) then
-						BlessingVarTmp = 1;
-						print("Blessing Loaded - use \'/blessing help\' for more help");
-				end
+		-- just a simple text to make the user aware that everything
+		-- is loaded and and how to use the addon
+		if (BlessingVarTmp == nil) then
+		   	BlessingVarTmp = 1;
+			print("Blessing Loaded - use \'/blessing help\' for more help");
+		end
 				
-					
-					
-		end -- ((event == "ADDON_LOADED")
+   end -- ((event == "ADDON_LOADED")
 end -- function BlessingCommand:OnEvent
 
 
@@ -121,6 +199,8 @@ function BlessingDefaultLoadingPrefsEnable()
 		['BlessingEnable'] = "yes",
 		['BlessingLanguage'] = "enUS",
 	};
+   L_ = L_enUS;
+	
    print("Blessing \"default\" mode activated");
 end
 
